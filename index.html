@@ -1,444 +1,532 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MYWALLPAPERHEART</title>
-<style>
-  /* Reset e básico */
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0; background: black; color: white; font-family: Arial, sans-serif;
-  }
-  header {
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-    background: black; padding: 1rem 0;
-  }
-  header h1, header p {
-    margin: 0; text-align: center;
-  }
-  #logo {
-    position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
-    width: 48px; height: 48px; border-radius: 50%; cursor: pointer;
-    object-fit: cover;
-  }
-  nav {
-    display: flex; justify-content: center; gap: 2rem; margin: 1rem 0;
-  }
-  nav button {
-    background: none; border: none; color: white; font-size: 1rem;
-    cursor: pointer; padding: 0.25rem 0.5rem;
-  }
-  nav button:hover, nav button.active {
-    border-bottom: 2px solid white;
-  }
-  main {
-    max-width: 1200px; margin: auto; padding: 1rem;
-  }
-  .produtos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap: 2rem;
-  }
-  .produto {
-    background: black; 
-    border-radius: 10px;
-    text-align: center;
-    color: white;
-  }
-  .produto img {
-    width: 100%; height: 250px; object-fit: cover; border-radius: 10px;
-  }
-  .produto h2 {
-    margin: 0.5rem 0 0.25rem;
-  }
-  .produto p {
-    margin: 0.25rem 0 0.5rem;
-  }
-  .price {
-    font-weight: bold; margin-bottom: 0.25rem;
-  }
-  .stars {
-    color: white; font-size: 1.1rem; margin-bottom: 0.5rem;
-  }
-  .buy-btn {
-    background: black; 
-    border: 2px solid white;
-    color: white;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-    display: inline-block;
-    text-decoration: none;
-  }
-  .buy-btn:hover {
-    background: white; 
-    color: black;
-  }
-  /* Efeito do botão Buy Now inicial: fundo preto, borda branca e letras brancas */
-  .buy-btn {
-    background-color: black;
-    border: 2px solid white;
-    color: white;
-  }
-  .buy-btn:hover {
-    background-color: white;
-    color: black;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MYWALLPAPERHEART</title>
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
 
-  /* Fundo cinza nas categorias */
-  nav button:not(.active):not(:hover) {
-    background: none;
-  }
-  /* Categoria ativa: fundo cinza escuro e letras brancas */
-  nav button.active {
-    background: #333;
-    color: white;
-  }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 15px 20px;
+      border-bottom: 1px solid #444;
+    }
 
-  /* Sobre - About */
-  #about {
-    background: black; 
-    color: white; 
-    padding: 2rem 1rem;
-    max-width: 800px; margin: 2rem auto;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
+    /* Logo */
+    #logo {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
 
-  /* Carrinho */
-  #cart-icon {
-    fill: white; cursor: pointer; position: fixed; top: 20px; right: 20px;
-    width: 32px; height: 32px; z-index: 1000;
-  }
-  #cart-count {
-    position: fixed; top: 15px; right: 15px;
-    background: red; color: white; font-weight: bold;
-    width: 18px; height: 18px; border-radius: 50%;
-    font-size: 12px; text-align: center; line-height: 18px;
-    z-index: 1100;
-    display: none;
-  }
-  #cart-modal {
-    position: fixed;
-    top: 60px; right: 20px;
-    background: black;
-    border: 2px solid white;
-    border-radius: 10px;
-    padding: 1rem;
-    width: 320px;
-    max-height: 400px;
-    overflow-y: auto;
-    z-index: 1200;
-    display: none;
-    color: white;
-  }
-  #cart-modal h3 {
-    margin-top: 0; margin-bottom: 1rem;
-  }
-  .cart-item {
-    display: flex; align-items: center; margin-bottom: 1rem;
-  }
-  .cart-item img {
-    width: 60px; height: 60px; object-fit: cover; border-radius: 5px;
-    margin-right: 1rem;
-  }
-  .cart-item-details {
-    flex-grow: 1;
-  }
-  .cart-item-name {
-    font-weight: bold; margin: 0;
-  }
-  .cart-item-price {
-    margin: 0.25rem 0 0;
-  }
-  #cart-total {
-    font-weight: bold; margin-top: 1rem; text-align: right;
-  }
-  #cart-actions {
-    margin-top: 1rem; text-align: right;
-  }
-  #cart-actions button {
-    background: black; 
-    border: 2px solid white;
-    color: white;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  #cart-actions button:hover {
-    background: white;
-    color: black;
-  }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      text-align: center;
+      flex: 1;
+    }
+    header p {
+      margin: 0;
+      font-size: 1rem;
+      text-align: center;
+      flex: 1;
+      color: #aaa;
+      margin-top: 4px;
+    }
 
-  /* Ajuste da imagem nas categorias para ficar igual ao 'all' */
-  /* Aumenta o tamanho da imagem nas categorias para 100% largura e 250px altura */
-  .produtos .produto img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
+    /* Navegação categorias */
+    nav {
+      background: #111;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+      border-bottom: 1px solid #444;
+      user-select: none;
+    }
 
-</style>
+    nav button {
+      background: none;
+      border: 2px solid #fff;
+      color: #fff;
+      padding: 8px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav button.active,
+    nav button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* Container principal */
+    main {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+      min-height: 60vh;
+    }
+
+    /* Produtos */
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 25px;
+    }
+
+    .produto {
+      background: transparent;
+      border-radius: 8px;
+      text-align: center;
+      color: white;
+      user-select: none;
+    }
+
+    .produto img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      box-shadow: 0 0 8px #222 inset;
+    }
+
+    .produto h2 {
+      margin: 8px 0 4px;
+      font-size: 1.2rem;
+    }
+
+    .produto p {
+      margin: 0 0 8px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    /* Avaliação - 5 estrelas */
+    .stars {
+      color: #fff;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    /* Preço */
+    .price {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    /* Botões comprar e favorito */
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .buy-btn {
+      border: 2px solid #fff;
+      background-color: #000;
+      color: #fff;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+      min-width: 110px;
+    }
+    .buy-btn:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .favorite-btn {
+      font-size: 1.8rem; /* aumentei para ficar maior */
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      line-height: 1;
+    }
+    .favorite-btn.added {
+      color: #e74c3c;
+    }
+    .favorite-btn:hover {
+      color: #e74c3c;
+    }
+
+    /* Carrinho ícone no topo direito */
+    #cart-icon {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      fill: white;
+      z-index: 1000;
+    }
+
+    #cart-count {
+      position: fixed;
+      top: 10px;
+      right: 14px;
+      background: #e74c3c;
+      color: white;
+      font-weight: bold;
+      font-size: 0.8rem;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      text-align: center;
+      line-height: 18px;
+      display: none;
+      z-index: 1001;
+    }
+
+    /* Modal do Carrinho */
+    #cart-modal {
+      display: none;
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      width: 320px;
+      max-height: 70vh;
+      overflow-y: auto;
+      background: #111;
+      border: 2px solid #fff;
+      border-radius: 8px;
+      padding: 15px;
+      color: white;
+      z-index: 1002;
+      box-shadow: 0 0 15px #fff;
+    }
+
+    #cart-modal h3 {
+      margin-top: 0;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.4rem;
+      border-bottom: 1px solid #555;
+      padding-bottom: 8px;
+    }
+
+    #cart-items-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    #cart-items-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #444;
+      padding: 8px 0;
+    }
+
+    #cart-items-list li img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    #cart-items-list li div {
+      flex-grow: 1;
+      font-size: 1rem;
+    }
+
+    #cart-total {
+      font-weight: bold;
+      text-align: right;
+      margin-top: 12px;
+      font-size: 1.1rem;
+    }
+
+    #cart-modal button {
+      cursor: pointer;
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: 2px solid white;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      transition: all 0.3s;
+      user-select: none;
+    }
+
+    #cart-modal button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    #cart-modal .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    /* About section */
+    #about {
+      max-width: 900px;
+      margin: 20px auto 50px;
+      background: black;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      line-height: 1.5;
+      white-space: pre-line;
+    }
+
+  </style>
 </head>
 <body>
-<header>
-  <img src="LOGO PNG Cores Invertidas.png" id="logo" alt="Logo MYWALLPAPERHEART" onclick="goHome()" />
-  <div>
-    <h1>MYWALLPAPERHEART</h1>
-    <p>Art Exhibition & sales</p>
-  </div>
-</header>
 
-<nav>
-  <button class="active" onclick="filterCategory('all')">All Products</button>
-  <button onclick="filterCategory('clothes')">Clothes</button>
-  <button onclick="filterCategory('accessories')">Accessories</button>
-  <button onclick="filterCategory('art')">Art & Decoration</button>
-  <button onclick="showAbout()">About</button>
-</nav>
-
-<main>
-  <div id="products-container" class="produtos">
-    <!-- Produtos -->
-    <div class="produto clothes" data-price="35" data-name="Hoodie" data-img="Hoodie MWH.png">
-      <img src="Hoodie MWH.png" alt="Hoodie" />
-      <h2>Hoodie</h2>
-      <p>Cozy and stylish hoodie</p>
-      <div class="price">€35</div>
-      <div class="stars">★★★★★</div>
-      <button class="buy-btn" onclick="buyNow('Hoodie', 35)">Buy Now</button>
-      <span class="fav" onclick="toggleFavorite(this, 'Hoodie', 35, 'Hoodie MWH.png')" style="cursor:pointer; margin-left:8px; font-size: 24px; color: white;">♡</span>
+  <header>
+    <img id="logo" src="LOGO PNG Cores Invertidas.png" alt="Logo MYWALLPAPERHEART" onclick="goHome()" />
+    <div style="flex:1;">
+      <h1>MYWALLPAPERHEART</h1>
+      <p>Art Exhibition & sales</p>
     </div>
+  </header>
 
-    <div class="produto clothes" data-price="20" data-name="Tshirt" data-img="Tshirt MWH.png">
-      <img src="Tshirt MWH.png" alt="Tshirt" />
-      <h2>Tshirt</h2>
-      <p>Comfortable and cool t-shirt</p>
-      <div class="price">€20</div>
-      <div class="stars">★★★★★</div>
-      <button class="buy-btn" onclick="buyNow('Tshirt', 20)">Buy Now</button>
-      <span class="fav" onclick="toggleFavorite(this, 'Tshirt', 20, 'Tshirt MWH.png')" style="cursor:pointer; margin-left:8px; font-size: 24px; color: white;">♡</span>
-    </div>
+  <nav>
+    <button class="active" data-category="all" onclick="filterCategory(event)">All</button>
+    <button data-category="clothes" onclick="filterCategory(event)">Clothes</button>
+    <button data-category="accessories" onclick="filterCategory(event)">Accessories</button>
+    <button data-category="art" onclick="filterCategory(event)">Art & Decoration</button>
+    <button data-category="about" onclick="filterCategory(event)">About</button>
+  </nav>
 
-    <div class="produto accessories" data-price="10" data-name="Almodafa" data-img="Almodafa MWH.png">
-      <img src="Almodafa MWH.png" alt="Almodafa" />
-      <h2>Almodafa</h2>
-      <p>Soft and decorative pillow</p>
-      <div class="price">€10</div>
-      <div class="stars">★★★★★</div>
-      <button class="buy-btn" onclick="buyNow('Almodafa', 10)">Buy Now</button>
-      <span class="fav" onclick="toggleFavorite(this, 'Almodafa', 10, 'Almodafa MWH.png')" style="cursor:pointer; margin-left:8px; font-size: 24px; color: white;">♡</span>
-    </div>
+  <main>
+    <section id="products-section" class="produtos"></section>
+    <section id="about" style="display:none;">
+MYWALLPAPERHEART is a 26-year-old artist who translates the essence of the human heart into images—mysterious, sensual, and deeply passionate about life. Each piece created is a fragment of his soul, where soft geometric shapes and meaningful symbols intertwine to tell stories of love, growth, and transformation.
 
-    <div class="produto art" data-price="25" data-name="Artes decorativas" data-img="Artesdecorativas MWH.png">
-      <img src="Artesdecorativas MWH.png" alt="Artes decorativas" />
-      <h2>Artes decorativas</h2>
-      <p>Beautiful decorative art piece</p>
-      <div class="price">€25</div>
-      <div class="stars">★★★★★</div>
-      <button class="buy-btn" onclick="buyNow('Artes decorativas', 25)">Buy Now</button>
-      <span class="fav" onclick="toggleFavorite(this, 'Artes decorativas', 25, 'Artesdecorativas MWH.png')" style="cursor:pointer; margin-left:8px; font-size: 24px; color: white;">♡</span>
+With a delicate yet powerful aesthetic, MYWALLPAPERHEART invites you on an introspective journey where art becomes a language for the deepest feelings and a celebration of personal development. His work reflects a poetic view of everyday life, an endless search for meaning and beauty in the small things that touch us.
+
+By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an image—you embrace an experience filled with emotion, mystery, and passion—a true connection between the artist and the viewer. 
+————————————————
+
+@mywallpaperheart
+    </section>
+  </main>
+
+  <svg id="cart-icon" onclick="toggleCartModal()" viewBox="0 0 24 24" style="fill:white; cursor:pointer;">
+    <path d="M7 4h-2l-3 7v9a2 2 0 002 2h14a2 2 0 002-2v-9l-3-7h-2" fill="none" stroke="white" stroke-width="2"/>
+    <circle cx="10" cy="20" r="2" fill="white"/>
+    <circle cx="17" cy="20" r="2" fill="white"/>
+  </svg>
+  <div id="cart-count"></div>
+
+  <div id="cart-modal">
+    <h3>Your Cart</h3>
+    <ul id="cart-items-list"></ul>
+    <p id="cart-total"></p>
+    <div class="actions">
+      <button onclick="toggleCartModal()">Close</button>
+      <button id="paypal-buy-now">Buy Now</button>
     </div>
   </div>
 
-  <div id="about" style="display:none;">
-    <h2>About MYWALLPAPERHEART</h2>
-    <p>Welcome to MYWALLPAPERHEART, your destination for exclusive art and stylish apparel. Our mission is to bring you unique designs and quality products that inspire and delight. Whether you're here for fashion, accessories, or decorative art, you'll find something special.</p>
-  </div>
-</main>
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=EUR"></script>
 
-<!-- Carrinho e contagem -->
-<svg id="cart-icon" viewBox="0 0 24 24" onclick="toggleCart()">
-  <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7.82 14H17v-2H8.61l-.79-3H19V7H7.5L6.25 3H2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h8v-2H7.82z"/>
-</svg>
-<div id="cart-count">0</div>
+  <script>
+    const products = [
+      {id:'hoodie', name:'Hoodie', price:35, img:'Hoodie MWH.png', category:'clothes'},
+      {id:'tshirt', name:'Tshirt', price:20, img:'Tshirt MWH.png', category:'clothes'},
+      {id:'almofada', name:'Almofada', price:10, img:'Almodafa MWH.png', category:'accessories'},
+      {id:'puzzle', name:'Puzzle', price:10, img:'Puzzle MWH.png', category:'art'},
+      {id:'caneca', name:'Caneca', price:10, img:'Caneca MWH.png', category:'art'},
+      {id:'caderno', name:'Caderno', price:10, img:'Caderno MWH.png', category:'art'}
+    ];
 
-<div id="cart-modal">
-  <h3>Your Cart</h3>
-  <div id="cart-items"></div>
-  <div id="cart-total"></div>
-  <div id="cart-actions">
-    <button onclick="checkout()">Checkout with PayPal</button>
-    <button onclick="clearCart()">Clear Cart</button>
-  </div>
-</div>
+    let favorites = [];
 
-<script>
-  // Voltar para home no logo
-  function goHome() {
-    location.reload();
-  }
-
-  // Filtra categorias
-  function filterCategory(cat) {
-    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-    if(cat === 'all') {
-      document.querySelector('nav button:nth-child(1)').classList.add('active');
-    } else {
-      [...document.querySelectorAll('nav button')].find(b => b.textContent.toLowerCase().includes(cat)).classList.add('active');
+    function goHome() {
+      filterCategory(null, 'all');
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      document.querySelector('nav button[data-category="all"]').classList.add('active');
     }
 
-    document.getElementById('about').style.display = 'none';
+    function filterCategory(e, cat=null) {
+      const category = cat || (e ? e.target.dataset.category : 'all');
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      if(e) e.target.classList.add('active');
+      if(cat) document.querySelector(`nav button[data-category="${cat}"]`)?.classList.add('active');
 
-    const produtos = document.querySelectorAll('.produto');
-    produtos.forEach(p => {
-      if(cat === 'all' || p.classList.contains(cat)) {
-        p.style.display = 'block';
+      if(category === 'about') {
+        document.getElementById('products-section').style.display = 'none';
+        document.getElementById('about').style.display = 'block';
       } else {
-        p.style.display = 'none';
+        document.getElementById('products-section').style.display = 'grid';
+        document.getElementById('about').style.display = 'none';
+        renderProducts(category);
       }
-    });
-  }
-
-  // Mostrar About
-  function showAbout() {
-    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-    [...document.querySelectorAll('nav button')].find(b => b.textContent.toLowerCase() === 'about').classList.add('active');
-    document.getElementById('about').style.display = 'block';
-    document.querySelectorAll('.produto').forEach(p => p.style.display = 'none');
-  }
-
-  // Favoritos
-  function toggleFavorite(element, name, price, img) {
-    if(element.textContent === '♡') {
-      element.textContent = '❤️';
-      element.style.color = 'red';
-      addToFavorites(name, price, img);
-    } else {
-      element.textContent = '♡';
-      element.style.color = 'white';
-      removeFromFavorites(name);
     }
-  }
 
-  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-
-  function addToFavorites(name, price, img) {
-    if(!favorites.find(f => f.name === name)) {
-      favorites.push({name, price, img});
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-    }
-  }
-
-  function removeFromFavorites(name) {
-    favorites = favorites.filter(f => f.name !== name);
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-  }
-
-  // Carrinho
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-  function updateCartCount() {
-    const count = cart.reduce((acc, item) => acc + item.quantity, 0);
-    const cartCount = document.getElementById('cart-count');
-    cartCount.textContent = count;
-    cartCount.style.display = count > 0 ? 'block' : 'none';
-  }
-
-  function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-  }
-
-  function addToCart(name, price, img) {
-    const existing = cart.find(item => item.name === name);
-    if(existing) {
-      existing.quantity++;
-    } else {
-      cart.push({name, price, img, quantity: 1});
-    }
-    saveCart();
-  }
-
-  function buyNow(name, price) {
-    // Adiciona ao carrinho e abre modal
-    const img = [...document.querySelectorAll('.produto')].find(p => p.dataset.name === name).dataset.img;
-    addToCart(name, price, img);
-    showCart();
-  }
-
-  function toggleCart() {
-    const cartModal = document.getElementById('cart-modal');
-    if(cartModal.style.display === 'block') {
-      cartModal.style.display = 'none';
-    } else {
-      showCart();
-    }
-  }
-
-  function showCart() {
-    const cartModal = document.getElementById('cart-modal');
-    const cartItems = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    cartItems.innerHTML = '';
-    if(cart.length === 0) {
-      cartItems.innerHTML = '<p>Your cart is empty.</p>';
-      cartTotal.textContent = '';
-    } else {
-      let total = 0;
-      cart.forEach(item => {
-        total += item.price * item.quantity;
+    function renderProducts(category = 'all') {
+      const container = document.getElementById('products-section');
+      container.innerHTML = '';
+      let filtered = category === 'all' ? products : products.filter(p => p.category === category);
+      filtered.forEach(prod => {
         const div = document.createElement('div');
-        div.className = 'cart-item';
+        div.classList.add('produto');
         div.innerHTML = `
-          <img src="${item.img}" alt="${item.name}" />
-          <div class="cart-item-details">
-            <p class="cart-item-name">${item.name} x${item.quantity}</p>
-            <p class="cart-item-price">€${(item.price * item.quantity).toFixed(2)}</p>
-            <button onclick="removeFromCart('${item.name}')">Remove</button>
+          <img src="${prod.img}" alt="${prod.name}">
+          <h2>${prod.name}</h2>
+          <div class="stars">★★★★★</div>
+          <p class="price">€${prod.price}</p>
+          <div class="actions">
+            <button class="buy-btn" onclick="buyProduct('${prod.id}')">Buy Now</button>
+            <span class="favorite-btn${favorites.includes(prod.id) ? ' added' : ''}" 
+                  onclick="toggleFavorite('${prod.id}', this)" title="Add/remove favorite">♥</span>
           </div>
         `;
-        cartItems.appendChild(div);
+        container.appendChild(div);
       });
-      cartTotal.textContent = `Total: €${total.toFixed(2)}`;
     }
-    cartModal.style.display = 'block';
-  }
 
-  function removeFromCart(name) {
-    const idx = cart.findIndex(item => item.name === name);
-    if(idx > -1) {
-      cart.splice(idx, 1);
-      saveCart();
-      showCart();
+    function toggleFavorite(id, elem) {
+      if(favorites.includes(id)){
+        favorites = favorites.filter(fav => fav !== id);
+        elem.classList.remove('added');
+      } else {
+        favorites.push(id);
+        elem.classList.add('added');
+      }
+      updateCartCount();
     }
-  }
 
-  function clearCart() {
-    cart = [];
-    saveCart();
-    showCart();
-  }
-
-  // Checkout PayPal
-  function checkout() {
-    if(cart.length === 0) {
-      alert('Your cart is empty.');
-      return;
+    function updateCartCount() {
+      const count = favorites.length;
+      const cartCount = document.getElementById('cart-count');
+      if(count > 0){
+        cartCount.style.display = 'inline-block';
+        cartCount.textContent = count;
+      } else {
+        cartCount.style.display = 'none';
+      }
     }
-    // Montar URL simples para PayPal (exemplo de redirecionamento)
-    // Para uma integração real, deveria usar API PayPal ou botão do PayPal
-    let url = 'https://www.paypal.com/cgi-bin/webscr?cmd=_cart&upload=1&business=your-paypal-email@example.com';
-    cart.forEach((item, index) => {
-      url += `&item_name_${index+1}=${encodeURIComponent(item.name)}`;
-      url += `&amount_${index+1}=${item.price.toFixed(2)}`;
-      url += `&quantity_${index+1}=${item.quantity}`;
+
+    function toggleCartModal() {
+      const modal = document.getElementById('cart-modal');
+      if(modal.style.display === 'block'){
+        modal.style.display = 'none';
+      } else {
+        renderCartItems();
+        modal.style.display = 'block';
+      }
+    }
+
+    function renderCartItems() {
+      const list = document.getElementById('cart-items-list');
+      list.innerHTML = '';
+      if(favorites.length === 0){
+        list.innerHTML = '<li>Your cart is empty.</li>';
+        document.getElementById('cart-total').textContent = '';
+        document.getElementById('paypal-buy-now').style.display = 'none';
+        return;
+      }
+
+      let total = 0;
+      favorites.forEach(favId => {
+        const prod = products.find(p => p.id === favId);
+        if(!prod) return;
+        total += prod.price;
+        const li = document.createElement('li');
+
+        li.style.display = 'flex';
+        li.style.alignItems = 'center';
+        li.style.gap = '10px';
+
+        const img = document.createElement('img');
+        img.src = prod.img;
+        img.alt = prod.name;
+
+        const desc = document.createElement('div');
+        desc.textContent = `${prod.name} - €${prod.price}`;
+
+        li.appendChild(img);
+        li.appendChild(desc);
+        list.appendChild(li);
+      });
+
+      document.getElementById('cart-total').textContent = `Total: €${total.toFixed(2)}`;
+      document.getElementById('paypal-buy-now').style.display = 'inline-block';
+    }
+
+    function checkout() {
+      alert('Checkout function not implemented yet.');
+    }
+
+    // Comprar produto individual clicando no Buy Now do produto
+    function buyProduct(prodId){
+      const product = products.find(p => p.id === prodId);
+      if(!product) return;
+      // Abrir o modal do carrinho com só esse produto?
+      favorites = [prodId]; 
+      updateCartCount();
+      renderCartItems();
+      toggleCartModal();
+    }
+
+    // --- PayPal Integration ---
+    // Quando o usuário clicar em Buy Now no modal, abrir o PayPal checkout para o total do carrinho
+
+    document.getElementById('paypal-buy-now').addEventListener('click', () => {
+      const total = favorites.reduce((sum, id) => {
+        const p = products.find(prod => prod.id === id);
+        return sum + (p ? p.price : 0);
+      }, 0);
+      if(total <= 0) {
+        alert('Your cart is empty.');
+        return;
+      }
+      // Criar o pedido PayPal (simplificado)
+      // Como não temos backend, vamos abrir a página do PayPal com o valor
+      // Nota: Para produção é recomendado integrar via backend.
+
+      // Redirecionar para checkout do PayPal (modo simples)
+      // Você deve substituir YOUR_PAYPAL_CLIENT_ID no script e configurar o PayPal corretamente para funcionar 100%
+
+      window.open(`https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=YOUR_PAYPAL_EMAIL&item_name=MYWALLPAPERHEART+Purchase&amount=${total.toFixed(2)}&currency_code=EUR`, '_blank');
     });
-    window.open(url, '_blank');
-  }
 
-  // Inicialização
-  updateCartCount();
-</script>
+    // Inicializa página com todos produtos visíveis
+    window.onload = () => {
+      renderProducts();
+      updateCartCount();
+    };
+  </script>
 
 </body>
 </html>
