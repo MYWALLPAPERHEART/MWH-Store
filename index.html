@@ -125,8 +125,8 @@
   }
   button.buy-btn {
     background: black;
-    color: black;
-    border: 2px solid white;
+    color: white;           /* texto branco */
+    border: 2px solid white;/* borda branca */
     padding: 8px 22px;
     font-size: 1rem;
     cursor: pointer;
@@ -179,11 +179,60 @@
     margin: 0 auto;
     font-size: 1rem;
     line-height: 1.5;
-    color: #ddd;
+    color: white;         /* branco */
     padding: 10px 15px;
+    background: black;    /* fundo preto */
+    border-radius: 8px;
+    border: none;         /* retirar borda cinza */
+  }
+
+  /* Modal do carrinho */
+  #cart-modal {
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    background: #111;
+    color: white;
     border: 1px solid #333;
     border-radius: 8px;
-    background: #111;
+    width: 320px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 15px;
+    box-shadow: 0 0 15px #ff3860cc;
+    z-index: 1100;
+  }
+  #cart-modal h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    text-align: center;
+    font-weight: 700;
+  }
+  #cart-modal ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 12px 0;
+  }
+  #cart-modal ul li {
+    padding: 6px 4px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+  }
+  #cart-modal button.close-btn {
+    display: block;
+    margin: 0 auto;
+    background: #ff3860;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  #cart-modal button.close-btn:hover {
+    background: #ff4c70;
   }
 
   /* Responsive */
@@ -194,6 +243,11 @@
     }
     nav {
       flex-wrap: wrap;
+    }
+    #cart-modal {
+      width: 90%;
+      top: 70px;
+      right: 5%;
     }
   }
 </style>
@@ -208,7 +262,7 @@
     <h1>MYWALLPAPERHEART</h1>
     <p>Art Exhibition & sales</p>
   </div>
-  <div id="cart" title="Cart (0 items)" onclick="alert('Cart feature coming soon!')">
+  <div id="cart" title="Cart (0 items)" onclick="toggleCartModal()">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
       <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2
         2-.896 2-2-.896-2-2-2zM7.163 14h9.674c.75 0 1.392-.416 1.732-1.049l3.158-5.446A1 1 0 0019.842 6H5.242L4.27
@@ -248,7 +302,7 @@
         <h2>T-shirt</h2>
         <p>Design exclusivo pintado à mão</p>
         <div class="stars">★★★★★</div>
-        <div class="price">€20</div>
+        <div class="price">€25</div>
         <div class="actions">
           <button class="buy-btn" onclick="window.open('https://www.paypal.com', '_blank')">Buy Now</button>
           <div class="favorite-btn" onclick="toggleCartItem(this)" title="Add to cart">&#10084;</div>
@@ -318,6 +372,14 @@
   </section>
 </main>
 
+<!-- Modal do carrinho -->
+<div id="cart-modal">
+  <h3>Favoritos</h3>
+  <ul id="cart-items-list"></ul>
+  <p><strong>Total:</strong> €<span id="cart-total">0</span></p>
+  <button class="close-btn" onclick="toggleCartModal()">Fechar</button>
+</div>
+
 <script>
   const cart = new Set();
 
@@ -325,7 +387,8 @@
   function toggleCartItem(el) {
     const produto = el.closest('.produto');
     const nome = produto.querySelector('h2').innerText;
-
+    const preco = produto.querySelector('.price').innerText.replace('€', '').trim();
+    
     if (cart.has(nome)) {
       cart.delete(nome);
       el.classList.remove('added');
@@ -378,7 +441,43 @@
     }
   }
 
-  // Initialize cart colors and count on load
+  // Modal carrinho toggle
+  function toggleCartModal() {
+    const modal = document.getElementById('cart-modal');
+    if (modal.style.display === 'block') {
+      modal.style.display = 'none';
+    } else {
+      renderCartItems();
+      modal.style.display = 'block';
+    }
+  }
+
+  // Render produtos no modal do carrinho
+  function renderCartItems() {
+    const list = document.getElementById('cart-items-list');
+    list.innerHTML = '';
+    let total = 0;
+
+    cart.forEach(nome => {
+      // Procurar o artigo pelo nome para obter o preço
+      const produto = [...document.querySelectorAll('.produto')].find(p => p.querySelector('h2').innerText === nome);
+      if (!produto) return;
+
+      const preco = parseFloat(produto.querySelector('.price').innerText.replace('€', '').trim());
+      total += preco;
+
+      const li = document.createElement('li');
+      li.textContent = nome;
+      const precoSpan = document.createElement('span');
+      precoSpan.textContent = `€${preco.toFixed(2)}`;
+      li.appendChild(precoSpan);
+      list.appendChild(li);
+    });
+
+    document.getElementById('cart-total').innerText = total.toFixed(2);
+  }
+
+  // Inicializar cores e contador no carregamento
   window.onload = () => {
     document.querySelectorAll('.produto').forEach(prod => {
       const nome = prod.querySelector('h2').innerText;
