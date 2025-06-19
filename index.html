@@ -12,20 +12,39 @@
       margin: 0; padding: 0;
     }
     header {
-      text-align: center;
-      padding: 2rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
       border-bottom: 1px solid #444;
     }
     header h1 {
       margin: 0;
       font-weight: 700;
       font-size: 2.5rem;
+      cursor: default;
     }
     header p {
-      margin-top: 0.3rem;
+      margin: 0;
       font-style: italic;
       color: #aaa;
+      flex-grow: 1;
+      text-align: center;
+      font-size: 1.1rem;
     }
+    header .logo-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    header .logo-btn img {
+      height: 50px;
+      width: auto;
+      display: block;
+      filter: brightness(1);
+    }
+
     main {
       max-width: 1100px;
       margin: 2rem auto;
@@ -36,62 +55,72 @@
       margin-bottom: 2rem;
     }
     .categories button {
-      background: #222;
-      border: none;
+      background: none;
+      border: 2px solid #fff;
       color: #fff;
       font-weight: bold;
       padding: 0.7rem 1.5rem;
       margin: 0 0.5rem;
       border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, color 0.3s;
+      font-size: 1rem;
     }
     .categories button:hover,
     .categories button.active {
-      background: #0f0;
+      background: #fff;
       color: #000;
     }
     .produtos {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap: 2.5rem;
     }
     .produto {
-      background: #111;
-      border-radius: 12px;
-      padding: 1rem;
-      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
       text-align: center;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .produto img {
       max-width: 100%;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      height: 250px;
+      height: 300px;
       object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 15px rgba(255,255,255,0.1);
     }
     .produto h2 {
-      margin: 0.5rem 0;
+      margin: 0.3rem 0;
       font-size: 1.5rem;
       color: #eee;
     }
     .produto p.price {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       margin: 0.3rem 0 1rem;
       font-weight: bold;
       color: #0f0;
     }
+    .paypal-button form {
+      margin-top: auto;
+    }
     .paypal-button input[type="image"] {
-      width: 150px;
+      width: 160px;
       cursor: pointer;
+      filter: brightness(1);
     }
     .about-text {
-      background: #111;
+      background: transparent;
       border-radius: 12px;
       padding: 2rem;
       font-size: 1.1rem;
       line-height: 1.6;
-      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      color: #fff;
       max-width: 900px;
       margin: auto;
       white-space: pre-wrap;
@@ -109,6 +138,9 @@
 <body>
 
   <header>
+    <button class="logo-btn" onclick="location.href='index.html'">
+      <img src="Hoodie MWH.png" alt="Logo MYWALLPAPERHEART" />
+    </button>
     <h1>MYWALLPAPERHEART</h1>
     <p>Art Exhibition & sales</p>
   </header>
@@ -215,8 +247,8 @@ MYWALLPAPERHEART is a 26-year-old artist who translates the essence of the human
 
 With a delicate yet powerful aesthetic, MYWALLPAPERHEART invites you on an introspective journey where art becomes a language for the deepest feelings and a celebration of personal development. His work reflects a poetic view of everyday life, an endless search for meaning and beauty in the small things that touch us.
 
-By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an image—you embrace an experience filled with emotion, mystery, and passion—a true connection between the artist and the viewer.
-
+By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an image—you embrace an experience filled with emotion, mystery, and passion—a true connection between the artist and the viewer. 
+————————————————
 
 @mywallpaperheart
     </div>
@@ -245,8 +277,8 @@ By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an im
     } else {
       about.style.display = 'none';
       produtos.forEach(prod => {
-        if (category === 'all' || prod.classList.contains(category)) {
-          prod.style.display = 'block';
+        if (prod.classList.contains(category)) {
+          prod.style.display = 'flex';
         } else {
           prod.style.display = 'none';
         }
