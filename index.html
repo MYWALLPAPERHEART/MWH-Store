@@ -2,283 +2,209 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MYWALLPAPERHEART</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    /* Reset e base */
-    * {
-      box-sizing: border-box;
-    }
     body {
-      margin: 0;
-      background-color: #000;
-      color: #fff;
       font-family: Arial, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    a {
-      color: #fff;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    /* Cabeçalho */
-    header {
-      display: flex;
-      align-items: center;
       background-color: #000;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #444;
-    }
-    header img.logo {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 1rem;
-      flex-shrink: 0;
-    }
-    header .titles {
-      flex-grow: 1;
-      text-align: center;
-    }
-    header .titles h1 {
+      color: white;
       margin: 0;
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-    header .titles p {
-      margin: 0;
-      font-size: 1rem;
-      font-style: italic;
-      color: #ccc;
-    }
-    /* Nav categorias */
-    nav {
-      background-color: #111;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 0.75rem 0;
-      font-weight: bold;
-      border-bottom: 1px solid #444;
-    }
-    nav a {
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      transition: background-color 0.3s;
-    }
-    nav a:hover, nav a.active {
-      background-color: #444;
-    }
-    /* Conteúdo principal */
-    main {
-      flex-grow: 1;
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    /* Seção About */
-    #about {
-      max-width: 700px;
-      margin: 0 auto 3rem;
-      line-height: 1.5;
-      font-size: 1.1rem;
-      color: #ddd;
-    }
-    /* Grid de produtos */
-    .produtos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    .produto {
-      background: transparent;
       padding: 0;
-      border-radius: 0;
-      box-shadow: none;
-      text-align: center;
+    }
+
+    header {
+      background-color: #000;
+      padding: 1rem;
       display: flex;
-      flex-direction: column;
       align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header img {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    h1 {
+      margin: 0.2rem 0;
+      text-align: center;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      border-bottom: 1px solid white;
+      padding-bottom: 0.5rem;
+    }
+
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .produto {
+      text-align: center;
+    }
+
+    .produto img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+
+    .stars {
+      color: white;
+      margin: 0.3rem 0;
+    }
+
+    .custom-button {
+      background-color: #fff;
+      color: #000;
+      padding: 0.5rem 1rem;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .custom-button:hover {
+      background-color: #000;
       color: #fff;
     }
-    .produto img {
-      width: 100%;
-      max-width: 250px;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 0.5rem;
-      object-fit: contain;
-    }
-    .produto h2 {
-      margin: 0.5rem 0 0.2rem;
-      font-size: 1.2rem;
-    }
-    .produto p.desc {
-      margin: 0 0 0.2rem;
-      font-size: 1rem;
-      color: #ccc;
-    }
-    .produto p.price {
-      font-weight: bold;
-      margin: 0 0 0.7rem;
-      font-size: 1.1rem;
-    }
-    /* Botão PayPal */
-    .paypal-button form {
-      margin-top: 0;
-    }
-    /* Footer */
+
     footer {
-      background-color: #000;
       text-align: center;
-      padding: 1rem 0;
-      font-size: 0.9rem;
-      color: #666;
-      border-top: 1px solid #222;
+      padding: 2rem 1rem;
       margin-top: 3rem;
+      border-top: 1px solid white;
+    }
+
+    .about {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid white;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <a href="#home"><img src="LOGO_PNG_Cores_Invertidas.png" alt="Logo MYWALLPAPERHEART" class="logo" /></a>
-    <div class="titles">
-      <h1>MYWALLPAPERHEART</h1>
-      <p>Art Exhibition &amp; Sales</p>
-    </div>
+    <img src="LOGO PNG Cores Invertidas.png" alt="Logo">
+    <h1>MYWALLPAPERHEART</h1>
+    <p>Art Exhibition & Sales</p>
   </header>
 
-  <nav>
-    <a href="#clothes" class="active" onclick="showCategory(event, 'clothes')">Clothes</a>
-    <a href="#accessories" onclick="showCategory(event, 'accessories')">Accessories</a>
-    <a href="#artdecor" onclick="showCategory(event, 'artdecor')">Art &amp; Decoration</a>
-    <a href="#about" onclick="showCategory(event, 'about')">About</a>
-  </nav>
-
   <main>
-    <!-- About -->
-    <section id="about" style="display:none;">
+
+    <section>
+      <h2>Clothes</h2>
+      <div class="produtos">
+        <div class="produto">
+          <img src="Hoodie MWH.png" alt="Hoodie">
+          <p class="price">€35</p>
+          <div class="stars">
+            ★★★★★
+          </div>
+          <a href="https://www.paypal.com/paypalme/mywallpaperheart/35" class="custom-button" target="_blank">BUY NOW</a>
+        </div>
+
+        <div class="produto">
+          <img src="Tshirt MWH.png" alt="T-shirt">
+          <p class="price">€20</p>
+          <div class="stars">
+            ★★★★★
+          </div>
+          <a href="https://www.paypal.com/paypalme/mywallpaperheart/20" class="custom-button" target="_blank">BUY NOW</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Accessories</h2>
+      <div class="produtos">
+        <div class="produto">
+          <img src="Almodafa MWH.png" alt="Pillow">
+          <p class="price">€10</p>
+          <div class="stars">
+            ★★★★★
+          </div>
+          <a href="https://www.paypal.com/paypalme/mywallpaperheart/10" class="custom-button" target="_blank">BUY NOW</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Art & Decoration</h2>
+      <div class="produtos">
+        <div class="produto">
+          <img src="Puzzle MWH.png" alt="Puzzle">
+          <p class="price">€10</p>
+          <div class="stars">
+            ★★★★★
+          </div>
+          <a href="https://www.paypal.com/paypalme/mywallpaperheart/10" class="custom-button" target="_blank">BUY NOW</a>
+        </div>
+
+        <div class="produto">
+          <img src="Caneca MWH.png" alt="Mug">
+          <p class="price">€10</p>
+          <div class="stars">
+            ★★★★★
+          </div>
+          <a href="https://www.paypal.com/paypalme/mywallpaperheart/10" class="custom-button" target="_blank">BUY NOW</a>
+        </div>
+
+        <div class="produto">
+          <img src="Caderno MWH.png" alt="Notebook">
+          <p class="price">€10</p>
+          <div class="stars">
+            ★★★★★
+          </div>
+          <a href="https://www.paypal.com/paypalme/mywallpaperheart/10" class="custom-button" target="_blank">BUY NOW</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <h2>About</h2>
       <p>
-        MYWALLPAPERHEART is a 26-year-old artist who translates the essence of the human heart into images—mysterious, sensual, and deeply passionate about life. Each piece created is a fragment of his soul, where soft geometric shapes and meaningful symbols intertwine to tell stories of love, growth, and transformation.<br/><br/>
-
-        With a delicate yet powerful aesthetic, MYWALLPAPERHEART invites you on an introspective journey where art becomes a language for the deepest feelings and a celebration of personal development. His work reflects a poetic view of everyday life, an endless search for meaning and beauty in the small things that touch us.<br/><br/>
-
-        By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an image—you embrace an experience filled with emotion, mystery, and passion—a true connection between the artist and the viewer.<br/><br/>
-        ————————————————<br/>
+        <strong>MYWALLPAPERHEART</strong> is a 26-year-old artist who translates the essence of the human heart into images—mysterious, sensual, and deeply passionate about life. Each piece created is a fragment of his soul, where soft geometric shapes and meaningful symbols intertwine to tell stories of love, growth, and transformation.
+      </p>
+      <p>
+        With a delicate yet powerful aesthetic, MYWALLPAPERHEART invites you on an introspective journey where art becomes a language for the deepest feelings and a celebration of personal development. His work reflects a poetic view of everyday life, an endless search for meaning and beauty in the small things that touch us.
+      </p>
+      <p>
+        By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an image—you embrace an experience filled with emotion, mystery, and passion—a true connection between the artist and the viewer.
+      </p>
+      <p>
+        —————————————————<br>
         @mywallpaperheart
       </p>
-    </section>
-
-    <!-- Clothes -->
-    <section id="clothes" class="produtos-grid">
-      <!-- Hoodie -->
-      <div class="produto">
-        <img src="Hoodie_MWH.png" alt="Hoodie" />
-        <h2>Hoodie</h2>
-        <p class="desc">Comfortable and stylish</p>
-        <p class="price">€35</p>
-        <div class="paypal-button">
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick" />
-            <input type="hidden" name="hosted_button_id" value="EXEMPLOID_HOODIE" />
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
-            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
-          </form>
-        </div>
-      </div>
-
-      <!-- Tshirt -->
-      <div class="produto">
-        <img src="Tshirt_MWH.png" alt="T-shirt" />
-        <h2>T-shirt</h2>
-        <p class="desc">Exclusive hand-painted design</p>
-        <p class="price">€20</p>
-        <div class="paypal-button">
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick" />
-            <input type="hidden" name="hosted_button_id" value="EXEMPLOID_TSHIRT" />
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
-            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- Accessories -->
-    <section id="accessories" class="produtos-grid" style="display:none;">
-      <!-- Almofada -->
-      <div class="produto">
-        <img src="Almodafa_MWH.png" alt="Almofada" />
-        <h2>Almofada</h2>
-        <p class="desc">Comfortable decorative pillow</p>
-        <p class="price">€10</p>
-        <div class="paypal-button">
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick" />
-            <input type="hidden" name="hosted_button_id" value="EXEMPLOID_ALMOFADA" />
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
-            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- Art & Decoration -->
-    <section id="artdecor" class="produtos-grid" style="display:none;">
-      <!-- Caderno -->
-      <div class="produto">
-        <img src="Caderno_MWH.png" alt="Caderno" />
-        <h2>Caderno</h2>
-        <p class="desc">Artistic notebook</p>
-        <p class="price">€10</p>
-        <div class="paypal-button">
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick" />
-            <input type="hidden" name="hosted_button_id" value="EXEMPLOID_CADERNO" />
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
-            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
-          </form>
-        </div>
-      </div>
-
-      <!-- Puzzle -->
-      <div class="produto">
-        <img src="Puzzle_MWH.png" alt="Puzzle" />
-        <h2>Puzzle</h2>
-        <p class="desc">Art transformed into puzzles</p>
-        <p class="price">€10</p>
-        <div class="paypal-button">
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick" />
-            <input type="hidden" name="hosted_button_id" value="EXEMPLOID_PUZZLE" />
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
-            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
-          </form>
-        </div>
-      </div>
-
-      <!-- Caneca -->
-      <div class="produto">
-        <img src="Caneca_MWH.png" alt="Caneca" />
-        <h2>Caneca</h2>
-        <p class="desc">Personalized mug with original art</p>
-        <p class="price">€10</p>
-        <div class="paypal-button">
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick" />
-            <input type="hidden" name="hosted_button_id" value="EXEMPLOID_CAN" />
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
-            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
-          </form>
-        </div>
-      </div>
     </section>
   </main>
 
@@ -286,29 +212,5 @@
     <p>&copy; 2025 MYWALLPAPERHEART. All rights reserved.</p>
   </footer>
 
-  <script>
-    // Função para trocar as categorias (mostrar e esconder as secções)
-    function showCategory(event, categoryId) {
-      event.preventDefault();
-      // Tirar a active da nav atual
-      document.querySelectorAll('nav a').forEach(link => {
-        link.classList.remove('active');
-      });
-      // Colocar active no clicado
-      event.target.classList.add('active');
-
-      // Esconder todas as secções
-      document.querySelectorAll('main > section').forEach(section => {
-        section.style.display = 'none';
-      });
-      // Mostrar a escolhida
-      document.getElementById(categoryId).style.display = categoryId === 'about' ? 'block' : 'grid';
-    }
-
-    // Mostrar inicialmente a categoria Clothes
-    document.addEventListener('DOMContentLoaded', () => {
-      showCategory({target: document.querySelector('nav a.active'), preventDefault: () => {}}, 'clothes');
-    });
-  </script>
 </body>
 </html>
