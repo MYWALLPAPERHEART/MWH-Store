@@ -1,236 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MYWALLPAPERHEART</title>
-  <style>
-    body {
-      margin: 0;
-      background: black;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MYWALLPAPERHEART</title>
+<style>
+  /* Reset básico */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    background: #000;
+    border-bottom: 1px solid #333;
+    z-index: 100;
+  }
+  /* Logo em círculo */
+  #logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  #logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Títulos no centro */
+  #titles {
+    text-align: center;
+    flex-grow: 1;
+  }
+  #titles h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  #titles p {
+    margin: 0;
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+  /* Carrinho topo direito */
+  #cart {
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    fill: #fff;
+    flex-shrink: 0;
+  }
 
-    header {
-      text-align: center;
-      padding: 2rem 1rem 1rem;
-      position: relative;
-    }
+  /* Menu categorias */
+  nav {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 12px 0;
+    position: sticky;
+    top: 62px; /* header 60px + 2 */
+    z-index: 90;
+  }
+  nav button {
+    background: none;
+    border: 2px solid white;
+    color: white;
+    padding: 6px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  nav button.active,
+  nav button:hover {
+    background-color: white;
+    color: black;
+  }
 
-    .logo {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      position: absolute;
-      left: 20px;
-      top: 20px;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin: 0;
-    }
-
-    h2 {
-      font-weight: normal;
-      margin-top: 0.5rem;
-      font-size: 1rem;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-      flex-wrap: wrap;
-    }
-
-    nav button {
-      background: transparent;
-      border: 1px solid white;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .produtos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .produto {
-      text-align: center;
-    }
-
-    .produto img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .preco {
-      margin-top: 0.5rem;
-      font-weight: bold;
-    }
-
-    .stars {
-      color: white;
-      margin: 0.3rem 0;
-    }
-
-    .paypal-button input[type="image"] {
-      border: 2px solid white;
-      background: white;
-      color: black;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .about {
-      display: none;
-      max-width: 800px;
-      margin: 2rem auto;
-      line-height: 1.6;
-      white-space: pre-wrap;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
+  /* Produtos grid */
+  main {
+    max-width: 1200px;
+    margin: 20px auto 40px;
+    padding: 0 20px;
+  }
+  .produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 25px;
+  }
+  .produto {
+    background: none; /* remove cinza */
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 40px;
+  }
+  .produto img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .produto h2 {
+    margin: 0 0 6px;
+    font-weight: 700;
+  }
+  .produto p {
+    margin: 0 0 6px;
+    font-size: 0.9rem;
+    color: #ddd;
+  }
+  /* Estrelas avaliação */
+  .stars {
+    color: white;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+  /* Preço */
+  .price {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  /* Botão Buy Now */
+  .buy-btn {
+    background: white;
+    color: black;
+    border: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .buy-btn:hover {
+    background: black;
+    color: white;
+    border-color: white;
+  }
+  /* Botão favorito coração */
+  .favorite-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    user-select: none;
+    transition: color 0.3s;
+  }
+  .favorite-btn.favorited {
+    color: #ff3860;
+  }
+  .favorite-btn:hover {
+    color: #ff3860;
+  }
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 20px 0;
+    font-style: italic;
+    color: #aaa;
+    border-top: 1px solid #222;
+  }
+</style>
 </head>
 <body>
 
-  <img src="LOGO PNG Cores Invertidas.png" alt="Logo" class="logo" />
-  <header>
+<header>
+  <div id="logo" title="Go to homepage" onclick="showCategory('all')">
+    <img src="LOGO PNG Cores Invertidas.png" alt="Logo MYWALLPAPERHEART" />
+  </div>
+  <div id="titles">
     <h1>MYWALLPAPERHEART</h1>
-    <h2>Art Exhibition & Sales</h2>
-    <nav>
-      <button onclick="showCategory('all')">Home</button>
-      <button onclick="showCategory('clothes')">Clothes</button>
-      <button onclick="showCategory('accessories')">Accessories</button>
-      <button onclick="showCategory('art')">Art & Decoration</button>
-      <button onclick="showCategory('about')">About</button>
-    </nav>
-  </header>
+    <p>Art Exhibition & sales</p>
+  </div>
+  <svg id="cart" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="Cart">
+    <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2
+      2-.896 2-2-.896-2-2-2zM7.163 14h9.674c.75 0 1.392-.416 1.732-1.049l3.158-5.446A1 1 0 0019.842 6H5.242L4.27
+      3.54A1 1 0 003.292 3H1v2h1.242l3.615 8.58-1.69 3.01a1 1 0 00.036 1.03 1 1 0 00.964.66z" />
+  </svg>
+</header>
 
-  <main>
-    <div class="produtos">
-      <!-- T-shirt -->
-      <div class="produto clothes">
-        <img src="Tshirt MWH.png" alt="T-shirt">
-        <div class="preco">€20</div>
-        <div class="stars">★★★★★</div>
-        <div class="paypal-button">
-          <form><input type="image" value="Buy Now" /></form>
-        </div>
-      </div>
+<nav>
+  <button class="active" onclick="showCategory('all')">All Products</button>
+  <button onclick="showCategory('clothes')">Clothes</button>
+  <button onclick="showCategory('accessories')">Accessories</button>
+  <button onclick="showCategory('art')">Art & Decoration</button>
+  <button onclick="showCategory('about')">About</button>
+</nav>
 
-      <!-- Hoodie -->
-      <div class="produto clothes">
-        <img src="Hoodie MWH.png" alt="Hoodie">
-        <div class="preco">€35</div>
-        <div class="stars">★★★★★</div>
-        <div class="paypal-button">
-          <form><input type="image" value="Buy Now" /></form>
-        </div>
-      </div>
-
-      <!-- Almofada -->
-      <div class="produto accessories">
-        <img src="Almodafa MWH.png" alt="Almofada">
-        <div class="preco">€10</div>
-        <div class="stars">★★★★★</div>
-        <div class="paypal-button">
-          <form><input type="image" value="Buy Now" /></form>
-        </div>
-      </div>
-
-      <!-- Puzzle -->
-      <div class="produto art">
-        <img src="Puzzle MWH.png" alt="Puzzle">
-        <div class="preco">€10</div>
-        <div class="stars">★★★★★</div>
-        <div class="paypal-button">
-          <form><input type="image" value="Buy Now" /></form>
-        </div>
-      </div>
-
-      <!-- Caneca -->
-      <div class="produto art">
-        <img src="Caneca MWH.png" alt="Caneca">
-        <div class="preco">€10</div>
-        <div class="stars">★★★★★</div>
-        <div class="paypal-button">
-          <form><input type="image" value="Buy Now" /></form>
-        </div>
-      </div>
-
-      <!-- Caderno -->
-      <div class="produto art">
-        <img src="Caderno MWH.png" alt="Caderno">
-        <div class="preco">€10</div>
-        <div class="stars">★★★★★</div>
-        <div class="paypal-button">
-          <form><input type="image" value="Buy Now" /></form>
-        </div>
-      </div>
-    </div>
-
-    <div class="about" id="aboutText">
-      MYWALLPAPERHEART is a 26-year-old artist who translates the essence of the human heart into images—mysterious, sensual, and deeply passionate about life. Each piece created is a fragment of his soul, where soft geometric shapes and meaningful symbols intertwine to tell stories of love, growth, and transformation.
-
-      With a delicate yet powerful aesthetic, MYWALLPAPERHEART invites you on an introspective journey where art becomes a language for the deepest feelings and a celebration of personal development. His work reflects a poetic view of everyday life, an endless search for meaning and beauty in the small things that touch us.
-
+<main>
+  <section id="about" style="display:none; max-width: 800px; margin: auto; padding: 20px; font-size: 1rem; line-height: 1.6; color: #ccc;">
+    <p>
+      MYWALLPAPERHEART is a 26-year-old artist who translates the essence of the human heart into images—mysterious, sensual, and deeply passionate about life.
+      Each piece created is a fragment of his soul, where soft geometric shapes and meaningful symbols intertwine to tell stories of love, growth, and transformation.
+    </p>
+    <p>
+      With a delicate yet powerful aesthetic, MYWALLPAPERHEART invites you on an introspective journey where art becomes a language for the deepest feelings and a celebration of personal development.
+      His work reflects a poetic view of everyday life, an endless search for meaning and beauty in the small things that touch us.
+    </p>
+    <p>
       By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an image—you embrace an experience filled with emotion, mystery, and passion—a true connection between the artist and the viewer.
+    </p>
+    <hr style="border-color:#444;" />
+    <p style="text-align:center; font-weight:bold;">@mywallpaperheart</p>
+  </section>
 
-      ————————————————
-      @mywallpaperheart
-    </div>
-  </main>
+  <section class="produtos" id="products-list">
+    <!-- Clothes -->
+    <article class="produto clothes">
+      <div class="favorite-btn" onclick="toggleFavorite(this)">&#10084;</div>
+      <img src="Hoodie MWH.png" alt="Hoodie" />
+      <h2>Hoodie</h2>
+      <p>Design exclusivo pintado à mão</p>
+      <div class="stars">★★★★★</div>
+      <div class="price">€35</div>
+      <a class="buy-btn" href="#" target="_blank">Buy Now</a>
+    </article>
 
-  <footer>
-    &copy; 2025 MYWALLPAPERHEART. All rights reserved.
-  </footer>
-
-  <script>
-    function showCategory(category) {
-      const produtos = document.querySelectorAll(".produto");
-      const about = document.getElementById("aboutText");
-
-      produtos.forEach(p => {
-        if (category === "all") {
-          p.classList.remove("hidden");
-        } else if (p.classList.contains(category)) {
-          p.classList.remove("hidden");
-        } else {
-          p.classList.add("hidden");
-        }
-      });
-
-      about.style.display = (category === "about") ? "block" : "none";
-    }
-  </script>
-
-</body>
-</html>
+    <article class="produto clothes">
+      <div class="favorite-btn" onclick="toggleFavorite(this)">&#10084;</div>
+      <img src="Tshirt MWH.png" alt="Tshirt" />
+      <h2>Tshirt</h2>
+      <p>Design exclusivo pintado à mão</p>
+      <div class="stars">★★★★★</div>
+      <div class="price">€20</div>
+      <a class="buy-btn" href="#"
