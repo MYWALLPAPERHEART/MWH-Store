@@ -1,95 +1,74 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loja de Arte</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
-    header { background: #333; color: white; padding: 1rem; text-align: center; }
-    main { padding: 2rem; max-width: 1200px; margin: auto; }
-    h1 { text-align: center; }
-    .produtos { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-    .produto { background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center; }
-    .produto img { max-width: 100%; height: auto; border-radius: 10px; }
-    .produto h2 { margin: 1rem 0 0.5rem; }
-    .produto p { margin-bottom: 1rem; }
-    footer { background: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
-    .paypal-button { margin-top: 1rem; }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Exposição & Venda de Arte</h1>
-  </header>
+<div class="produto">
+  <img src="Tshirt MWH.png" alt="Camiseta artística">
+  <h2>Camiseta</h2>
+  <p>Design exclusivo pintado à mão</p>
+  <div class="paypal-button">
+    <!-- PayPal botão camisola -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="EXEMPLOID1">
+      <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
+      <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
+    </form>
+  </div>
+</div>
 
-  <main>
-    <h1>Produtos</h1>
-    <div class="produtos">
-      <div class="produto">
-        <img src="Tshirt_MWH.png" alt="Camiseta artística">
-        <h2>Camisola</h2>
-        <p>Design exclusivo pintado à mão</p>
-        <div class="paypal-button">
-          <!-- PayPal botão camisola -->
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="EXEMPLOID1">
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
-            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
-          </form>
-        </div>
-      </div>
+<div class="produto">
+  <img src="Hoodie MWH.png" alt="Hoodie artístico">
+  <h2>Hoodie</h2>
+  <p>Design exclusivo pintado à mão</p>
+  <div class="paypal-button">
+    <!-- PayPal botão hoodie -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="EXEMPLOID2">
+      <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
+      <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
+    </form>
+  </div>
+</div>
 
-      <div class="produto">
-        <img src="puzzle.jpg" alt="Puzzle artístico">
-        <h2>Puzzle</h2>
-        <p>Arte transformada em quebra-cabeças</p>
-        <div class="paypal-button">
-          <!-- PayPal botão puzzle -->
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="EXEMPLOID2">
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
-            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
-          </form>
-        </div>
-      </div>
+<div class="produto">
+  <img src="Puzzle MWH.png" alt="Puzzle artístico">
+  <h2>Puzzle</h2>
+  <p>Arte transformada em quebra-cabeças</p>
+  <div class="paypal-button">
+    <!-- PayPal botão puzzle -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="EXEMPLOID3">
+      <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
+      <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
+    </form>
+  </div>
+</div>
 
-      <div class="produto">
-        <img src="caneca.jpg" alt="Caneca artística">
-        <h2>Caneca</h2>
-        <p>Canecas personalizadas com arte original</p>
-        <div class="paypal-button">
-          <!-- PayPal botão caneca -->
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="EXEMPLOID3">
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
-            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
-          </form>
-        </div>
-      </div>
+<div class="produto">
+  <img src="Caneca MWH.png" alt="Caneca artística">
+  <h2>Caneca</h2>
+  <p>Canecas personalizadas com arte original</p>
+  <div class="paypal-button">
+    <!-- PayPal botão caneca -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="EXEMPLOID4">
+      <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
+      <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
+    </form>
+  </div>
+</div>
 
-      <div class="produto">
-        <img src="impresso3d.jpg" alt="Impressão 3D artística">
-        <h2>Impressão 3D</h2>
-        <p>Peças artísticas produzidas em impressora 3D</p>
-        <div class="paypal-button">
-          <!-- PayPal botão impressão 3D -->
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="EXEMPLOID4">
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
-            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
-          </form>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Loja de Arte. Todos os direitos reservados.</p>
-  </footer>
-</body>
-</html>
+<div class="produto">
+  <img src="Caderno MWH.png" alt="Caderno artístico">
+  <h2>Caderno</h2>
+  <p>Peças artísticas produzidas em impressora 3D</p>
+  <div class="paypal-button">
+    <!-- PayPal botão caderno -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="EXEMPLOID5">
+      <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
+      <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
+    </form>
+  </div>
+</div>
