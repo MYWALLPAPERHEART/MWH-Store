@@ -1,74 +1,166 @@
-<div class="produto">
-  <img src="Tshirt MWH.png" alt="Camiseta artística">
-  <h2>Camiseta</h2>
-  <p>Design exclusivo pintado à mão</p>
-  <div class="paypal-button">
-    <!-- PayPal botão camisola -->
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_s-xclick">
-      <input type="hidden" name="hosted_button_id" value="EXEMPLOID1">
-      <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
-      <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
-    </form>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MWH-Store - Loja de Arte</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-bottom: 1px solid #444;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 2.5rem;
+    }
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 2rem;
+    }
+    .produto {
+      background: #111;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      text-align: center;
+    }
+    .produto img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      height: 250px;
+      object-fit: cover;
+    }
+    .produto h2 {
+      margin: 0.5rem 0;
+      font-size: 1.5rem;
+      color: #eee;
+    }
+    .produto p.price {
+      font-size: 1.3rem;
+      margin: 0.3rem 0 1rem;
+      font-weight: bold;
+      color: #0f0;
+    }
+    .paypal-button input[type="image"] {
+      width: 150px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+      border-top: 1px solid #222;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
 
-<div class="produto">
-  <img src="Hoodie MWH.png" alt="Hoodie artístico">
-  <h2>Hoodie</h2>
-  <p>Design exclusivo pintado à mão</p>
-  <div class="paypal-button">
-    <!-- PayPal botão hoodie -->
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_s-xclick">
-      <input type="hidden" name="hosted_button_id" value="EXEMPLOID2">
-      <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
-      <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
-    </form>
-  </div>
-</div>
+  <header>
+    <h1>MWH-Store</h1>
+    <p>Exposição & Venda de Arte</p>
+  </header>
 
-<div class="produto">
-  <img src="Puzzle MWH.png" alt="Puzzle artístico">
-  <h2>Puzzle</h2>
-  <p>Arte transformada em quebra-cabeças</p>
-  <div class="paypal-button">
-    <!-- PayPal botão puzzle -->
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_s-xclick">
-      <input type="hidden" name="hosted_button_id" value="EXEMPLOID3">
-      <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
-      <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
-    </form>
-  </div>
-</div>
+  <main>
+    <div class="produtos">
+      
+      <!-- Hoodie -->
+      <div class="produto">
+        <img src="Hoodie MWH.png" alt="Hoodie artístico" />
+        <h2>Hoodie</h2>
+        <p class="price">35€</p>
+        <div class="paypal-button">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="EXEMPLOID-HOODIE" />
+            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
+            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
+          </form>
+        </div>
+      </div>
 
-<div class="produto">
-  <img src="Caneca MWH.png" alt="Caneca artística">
-  <h2>Caneca</h2>
-  <p>Canecas personalizadas com arte original</p>
-  <div class="paypal-button">
-    <!-- PayPal botão caneca -->
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_s-xclick">
-      <input type="hidden" name="hosted_button_id" value="EXEMPLOID4">
-      <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
-      <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
-    </form>
-  </div>
-</div>
+      <!-- Tshirt -->
+      <div class="produto">
+        <img src="Tshirt MWH.png" alt="Tshirt artística" />
+        <h2>Tshirt</h2>
+        <p class="price">20€</p>
+        <div class="paypal-button">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="EXEMPLOID-TSHIRT" />
+            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
+            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
+          </form>
+        </div>
+      </div>
 
-<div class="produto">
-  <img src="Caderno MWH.png" alt="Caderno artístico">
-  <h2>Caderno</h2>
-  <p>Peças artísticas produzidas em impressora 3D</p>
-  <div class="paypal-button">
-    <!-- PayPal botão caderno -->
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_s-xclick">
-      <input type="hidden" name="hosted_button_id" value="EXEMPLOID5">
-      <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal">
-      <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1">
-    </form>
-  </div>
-</div>
+      <!-- Caderno -->
+      <div class="produto">
+        <img src="Caderno MWH.png" alt="Caderno artístico" />
+        <h2>Caderno</h2>
+        <p class="price">10€</p>
+        <div class="paypal-button">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="EXEMPLOID-CADERNO" />
+            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
+            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
+          </form>
+        </div>
+      </div>
+
+      <!-- Puzzle -->
+      <div class="produto">
+        <img src="Puzzle MWH.png" alt="Puzzle artístico" />
+        <h2>Puzzle</h2>
+        <p class="price">10€</p>
+        <div class="paypal-button">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="EXEMPLOID-PUZZLE" />
+            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
+            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
+          </form>
+        </div>
+      </div>
+
+      <!-- Almofada -->
+      <div class="produto">
+        <img src="Almodafa MWH.png" alt="Almofada artística" />
+        <h2>Almofada</h2>
+        <p class="price">10€</p>
+        <div class="paypal-button">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="EXEMPLOID-ALMOFADA" />
+            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
+            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MWH-Store. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
