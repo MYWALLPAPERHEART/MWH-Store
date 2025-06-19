@@ -5,170 +5,196 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MYWALLPAPERHEART</title>
 <style>
+  /* Reset */
   * {
     box-sizing: border-box;
   }
   body {
     margin: 0;
     background-color: #000;
-    color: #fff;
+    color: white;
     font-family: Arial, sans-serif;
   }
   header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    background: #000;
     padding: 10px 20px;
     position: sticky;
     top: 0;
-    background: #000;
-    border-bottom: 1px solid #333;
-    z-index: 100;
+    z-index: 1000;
+    border-bottom: 1px solid #222;
   }
   #logo {
+    cursor: pointer;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    overflow: hidden;
     flex-shrink: 0;
-    cursor: pointer;
+    margin-right: 20px;
   }
   #logo img {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
     object-fit: cover;
   }
   #titles {
-    text-align: center;
     flex-grow: 1;
+    text-align: center;
   }
   #titles h1 {
     margin: 0;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
   }
   #titles p {
-    margin: 0;
+    margin: 2px 0 0 0;
+    font-size: 1rem;
     font-style: italic;
-    font-size: 0.9rem;
-  }
-  #cart {
-    cursor: pointer;
-    width: 36px;
-    height: 36px;
-    fill: #fff;
-    flex-shrink: 0;
+    color: #aaa;
   }
   nav {
-    background: #111;
     display: flex;
     justify-content: center;
-    gap: 20px;
-    padding: 12px 0;
-    position: sticky;
-    top: 62px;
-    z-index: 90;
+    background: #111;
+    border-bottom: 1px solid #222;
   }
   nav button {
     background: none;
-    border: 2px solid white;
+    border: none;
     color: white;
-    padding: 6px 16px;
+    padding: 14px 20px;
     font-size: 1rem;
     cursor: pointer;
-    border-radius: 20px;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background 0.3s;
   }
-  nav button.active,
-  nav button:hover {
-    background-color: white;
-    color: black;
+  nav button:hover,
+  nav button.active {
+    background: #222;
   }
   main {
     max-width: 1200px;
     margin: 20px auto 40px;
-    padding: 0 20px;
+    padding: 0 15px;
   }
   .produtos {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    gap: 20px;
   }
   .produto {
-    background: none;
+    background: transparent;
     border-radius: 10px;
     text-align: center;
-    position: relative;
-    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .produto img {
-    width: 220px;
-    height: 220px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 12px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(255 255 255 / 0.1);
   }
   .produto h2 {
-    margin: 0 0 6px;
-    font-weight: 700;
+    margin: 10px 0 4px;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
   }
   .produto p {
-    margin: 0 0 6px;
     font-size: 0.9rem;
-    color: #ddd;
+    color: #ccc;
+    margin: 0 0 8px;
   }
   .stars {
     color: white;
-    margin-bottom: 8px;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin-bottom: 5px;
   }
   .price {
     font-weight: bold;
-    margin-bottom: 8px;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
   }
-  .buy-btn {
-    background: white;
+  .actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  button.buy-btn {
+    background: black;
     color: black;
     border: 2px solid white;
-    padding: 10px 20px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: 700;
+    padding: 8px 22px;
     font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
-    text-decoration: none;
-    display: inline-block;
   }
-  .buy-btn:hover {
-    background: black;
-    color: white;
-    border-color: white;
+  button.buy-btn:hover {
+    background: white;
+    color: black;
   }
   .favorite-btn {
-    position: absolute;
-    top: 12px;
-    right: 12px;
+    font-size: 28px;
     cursor: pointer;
-    font-size: 24px;
-    color: white;
     user-select: none;
+    color: white;
     transition: color 0.3s;
   }
-  .favorite-btn.favorited {
+  .favorite-btn.added {
     color: #ff3860;
   }
-  .favorite-btn:hover {
-    color: #ff3860;
+
+  #cart {
+    position: relative;
+    cursor: pointer;
+    margin-left: 20px;
+    flex-shrink: 0;
   }
-  footer {
-    text-align: center;
-    padding: 20px 0;
-    font-style: italic;
-    color: #aaa;
-    border-top: 1px solid #222;
+  #cart svg {
+    fill: white;
+    width: 36px;
+    height: 36px;
+  }
+  #cart-count {
+    position: absolute;
+    top: 0;
+    right: -6px;
+    background: #ff3860;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 2px 7px;
+    border-radius: 50%;
+    display: none;
+  }
+
+  /* About section */
+  #about-text {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #ddd;
+    padding: 10px 15px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: #111;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .produto img {
+      width: 100%;
+      height: auto;
+    }
+    nav {
+      flex-wrap: wrap;
+    }
   }
 </style>
 </head>
@@ -182,139 +208,191 @@
     <h1>MYWALLPAPERHEART</h1>
     <p>Art Exhibition & sales</p>
   </div>
-  <svg id="cart" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="Cart">
-    <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2
-      2-.896 2-2-.896-2-2-2zM7.163 14h9.674c.75 0 1.392-.416 1.732-1.049l3.158-5.446A1 1 0 0019.842 6H5.242L4.27
-      3.54A1 1 0 003.292 3H1v2h1.242l3.615 8.58-1.69 3.01a1 1 0 00.036 1.03 1 1 0 00.964.66z" />
-  </svg>
+  <div id="cart" title="Cart (0 items)" onclick="alert('Cart feature coming soon!')">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
+      <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2
+        2-.896 2-2-.896-2-2-2zM7.163 14h9.674c.75 0 1.392-.416 1.732-1.049l3.158-5.446A1 1 0 0019.842 6H5.242L4.27
+        3.54A1 1 0 003.292 3H1v2h1.242l3.615 8.58-1.69 3.01a1 1 0 00.036 1.03 1 1 0 00.964.66z" />
+    </svg>
+    <span id="cart-count">0</span>
+  </div>
 </header>
 
 <nav>
-  <button class="active" onclick="showCategory('all', this)">All Products</button>
-  <button onclick="showCategory('clothes', this)">Clothes</button>
-  <button onclick="showCategory('accessories', this)">Accessories</button>
-  <button onclick="showCategory('art', this)">Art & Decoration</button>
-  <button onclick="showCategory('about', this)">About</button>
+  <button class="active" onclick="showCategory('all')">All Products</button>
+  <button onclick="showCategory('clothes')">Clothes</button>
+  <button onclick="showCategory('accessories')">Accessories</button>
+  <button onclick="showCategory('art')">Art & Decoration</button>
+  <button onclick="showCategory('about')">About</button>
 </nav>
 
 <main>
-  <section id="about" style="display:none; max-width: 800px; margin: auto; padding: 20px; font-size: 1rem; line-height: 1.6; color: #ccc;">
-    <p>
-      MYWALLPAPERHEART is a 26-year-old artist who translates the essence of the human heart into images—mysterious, sensual, and deeply passionate about life.
-      Each piece created is a fragment of his soul, where soft geometric shapes and meaningful symbols intertwine to tell stories of love, growth, and transformation.
-    </p>
-    <p>
-      With a delicate yet powerful aesthetic, MYWALLPAPERHEART invites you on an introspective journey where art becomes a language for the deepest feelings and a celebration of personal development.
-      His work reflects a poetic view of everyday life, an endless search for meaning and beauty in the small things that touch us.
-    </p>
-    <p>
-      By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an image—you embrace an experience filled with emotion, mystery, and passion—a true connection between the artist and the viewer.
-    </p>
-    <hr style="border-color:#444;" />
-    <p style="text-align:center; font-weight:bold;">@mywallpaperheart</p>
+  <section id="products-section">
+    <div class="produtos">
+
+      <!-- CLOTHES -->
+      <article class="produto clothes">
+        <img src="Hoodie MWH.png" alt="Hoodie" />
+        <h2>Hoodie</h2>
+        <p>Design exclusivo pintado à mão</p>
+        <div class="stars">★★★★★</div>
+        <div class="price">€35</div>
+        <div class="actions">
+          <button class="buy-btn" onclick="window.open('https://www.paypal.com', '_blank')">Buy Now</button>
+          <div class="favorite-btn" onclick="toggleCartItem(this)" title="Add to cart">&#10084;</div>
+        </div>
+      </article>
+
+      <article class="produto clothes">
+        <img src="Tshirt MWH.png" alt="T-shirt" />
+        <h2>T-shirt</h2>
+        <p>Design exclusivo pintado à mão</p>
+        <div class="stars">★★★★★</div>
+        <div class="price">€20</div>
+        <div class="actions">
+          <button class="buy-btn" onclick="window.open('https://www.paypal.com', '_blank')">Buy Now</button>
+          <div class="favorite-btn" onclick="toggleCartItem(this)" title="Add to cart">&#10084;</div>
+        </div>
+      </article>
+
+      <!-- ACCESSORIES -->
+      <article class="produto accessories">
+        <img src="Almodafa MWH.png" alt="Almofada" />
+        <h2>Almofada</h2>
+        <p>Design exclusivo pintado à mão</p>
+        <div class="stars">★★★★★</div>
+        <div class="price">€10</div>
+        <div class="actions">
+          <button class="buy-btn" onclick="window.open('https://www.paypal.com', '_blank')">Buy Now</button>
+          <div class="favorite-btn" onclick="toggleCartItem(this)" title="Add to cart">&#10084;</div>
+        </div>
+      </article>
+
+      <!-- ART & DECORATION -->
+      <article class="produto art">
+        <img src="Puzzle MWH.png" alt="Puzzle" />
+        <h2>Puzzle</h2>
+        <p>Design exclusivo pintado à mão</p>
+        <div class="stars">★★★★★</div>
+        <div class="price">€10</div>
+        <div class="actions">
+          <button class="buy-btn" onclick="window.open('https://www.paypal.com', '_blank')">Buy Now</button>
+          <div class="favorite-btn" onclick="toggleCartItem(this)" title="Add to cart">&#10084;</div>
+        </div>
+      </article>
+
+      <article class="produto art">
+        <img src="Caneca MWH.png" alt="Caneca" />
+        <h2>Caneca</h2>
+        <p>Design exclusivo pintado à mão</p>
+        <div class="stars">★★★★★</div>
+        <div class="price">€10</div>
+        <div class="actions">
+          <button class="buy-btn" onclick="window.open('https://www.paypal.com', '_blank')">Buy Now</button>
+          <div class="favorite-btn" onclick="toggleCartItem(this)" title="Add to cart">&#10084;</div>
+        </div>
+      </article>
+
+      <article class="produto art">
+        <img src="Caderno MWH.png" alt="Caderno" />
+        <h2>Caderno</h2>
+        <p>Design exclusivo pintado à mão</p>
+        <div class="stars">★★★★★</div>
+        <div class="price">€10</div>
+        <div class="actions">
+          <button class="buy-btn" onclick="window.open('https://www.paypal.com', '_blank')">Buy Now</button>
+          <div class="favorite-btn" onclick="toggleCartItem(this)" title="Add to cart">&#10084;</div>
+        </div>
+      </article>
+    </div>
   </section>
 
-  <section class="produtos" id="products-list">
-    <!-- Clothes -->
-    <article class="produto clothes">
-      <div class="favorite-btn" onclick="toggleFavorite(this)">&#10084;</div>
-      <img src="Hoodie MWH.png" alt="Hoodie" />
-      <h2>Hoodie</h2>
-      <p>Design exclusivo pintado à mão</p>
-      <div class="stars">★★★★★</div>
-      <div class="price">€35</div>
-      <a class="buy-btn" href="#" target="_blank">Buy Now</a>
-    </article>
-
-    <article class="produto clothes">
-      <div class="favorite-btn" onclick="toggleFavorite(this)">&#10084;</div>
-      <img src="Tshirt MWH.png" alt="Tshirt" />
-      <h2>Tshirt</h2>
-      <p>Design exclusivo pintado à mão</p>
-      <div class="stars">★★★★★</div>
-      <div class="price">€20</div>
-      <a class="buy-btn" href="#" target="_blank">Buy Now</a>
-    </article>
-
-    <!-- Accessories -->
-    <article class="produto accessories">
-      <div class="favorite-btn" onclick="toggleFavorite(this)">&#10084;</div>
-      <img src="Almodafa MWH.png" alt="Almofada" />
-      <h2>Almofada</h2>
-      <p>Design exclusivo pintado à mão</p>
-      <div class="stars">★★★★★</div>
-      <div class="price">€10</div>
-      <a class="buy-btn" href="#" target="_blank">Buy Now</a>
-    </article>
-
-    <!-- Art & Decoration -->
-    <article class="produto art">
-      <div class="favorite-btn" onclick="toggleFavorite(this)">&#10084;</div>
-      <img src="Puzzle MWH.png" alt="Puzzle" />
-      <h2>Puzzle</h2>
-      <p>Design exclusivo pintado à mão</p>
-      <div class="stars">★★★★★</div>
-      <div class="price">€10</div>
-      <a class="buy-btn" href="#" target="_blank">Buy Now</a>
-    </article>
-
-    <article class="produto art">
-      <div class="favorite-btn" onclick="toggleFavorite(this)">&#10084;</div>
-      <img src="Caneca MWH.png" alt="Caneca" />
-      <h2>Caneca</h2>
-      <p>Design exclusivo pintado à mão</p>
-      <div class="stars">★★★★★</div>
-      <div class="price">€10</div>
-      <a class="buy-btn" href="#" target="_blank">Buy Now</a>
-    </article>
-
-    <article class="produto art">
-      <div class="favorite-btn" onclick="toggleFavorite(this)">&#10084;</div>
-      <img src="Caderno MWH.png" alt="Caderno" />
-      <h2>Caderno</h2>
-      <p>Design exclusivo pintado à mão</p>
-      <div class="stars">★★★★★</div>
-      <div class="price">€10</div>
-      <a class="buy-btn" href="#" target="_blank">Buy Now</a>
-    </article>
+  <section id="about-section" style="display:none; padding: 20px;">
+    <div id="about-text">
+      <p>MYWALLPAPERHEART is a 26-year-old artist who translates the essence of the human heart into images—mysterious, sensual, and deeply passionate about life. Each piece created is a fragment of his soul, where soft geometric shapes and meaningful symbols intertwine to tell stories of love, growth, and transformation.</p>
+      <p>With a delicate yet powerful aesthetic, MYWALLPAPERHEART invites you on an introspective journey where art becomes a language for the deepest feelings and a celebration of personal development. His work reflects a poetic view of everyday life, an endless search for meaning and beauty in the small things that touch us.</p>
+      <p>By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an image—you embrace an experience filled with emotion, mystery, and passion—a true connection between the artist and the viewer.</p>
+      <hr style="border-color:#444" />
+      <p style="text-align:center;">@mywallpaperheart</p>
+    </div>
   </section>
 </main>
 
-<footer>
-  Art Exhibition & sales
-</footer>
-
 <script>
-  function showCategory(category, btn) {
-    // Remove active class dos botões
-    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-    if(btn) btn.classList.add('active');
-    
-    // Mostrar ou esconder about
-    const about = document.getElementById('about');
-    const products = document.getElementById('products-list');
-    
-    if(category === 'about') {
-      about.style.display = 'block';
-      products.style.display = 'none';
+  const cart = new Set();
+
+  // Toggle cart item by clicking heart
+  function toggleCartItem(el) {
+    const produto = el.closest('.produto');
+    const nome = produto.querySelector('h2').innerText;
+
+    if (cart.has(nome)) {
+      cart.delete(nome);
+      el.classList.remove('added');
+      el.style.color = 'white';
     } else {
-      about.style.display = 'none';
-      products.style.display = 'grid';
-      
-      // Mostrar produtos da categoria ou todos
-      document.querySelectorAll('.produto').forEach(prod => {
-        if(category === 'all') {
-          prod.style.display = 'block';
+      cart.add(nome);
+      el.classList.add('added');
+      el.style.color = '#ff3860';
+    }
+    updateCartCount();
+  }
+
+  // Update cart count badge
+  function updateCartCount() {
+    const countSpan = document.getElementById('cart-count');
+    if (cart.size === 0) {
+      countSpan.style.display = 'none';
+    } else {
+      countSpan.style.display = 'inline-block';
+      countSpan.innerText = cart.size;
+    }
+  }
+
+  // Show products by category or about info
+  function showCategory(category) {
+    const allButtons = document.querySelectorAll('nav button');
+    allButtons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const productsSection = document.getElementById('products-section');
+    const aboutSection = document.getElementById('about-section');
+
+    if(category === 'all') {
+      productsSection.style.display = 'block';
+      aboutSection.style.display = 'none';
+      document.querySelectorAll('.produto').forEach(p => p.style.display = 'flex');
+    } else if(category === 'about') {
+      productsSection.style.display = 'none';
+      aboutSection.style.display = 'block';
+    } else {
+      productsSection.style.display = 'block';
+      aboutSection.style.display = 'none';
+      document.querySelectorAll('.produto').forEach(p => {
+        if(p.classList.contains(category)) {
+          p.style.display = 'flex';
         } else {
-          prod.style.display = prod.classList.contains(category) ? 'block' : 'none';
+          p.style.display = 'none';
         }
       });
     }
   }
 
-  function toggleFavorite(el) {
-    el.classList.toggle('favorited');
-  }
+  // Initialize cart colors and count on load
+  window.onload = () => {
+    document.querySelectorAll('.produto').forEach(prod => {
+      const nome = prod.querySelector('h2').innerText;
+      const heart = prod.querySelector('.favorite-btn');
+      if (cart.has(nome)) {
+        heart.classList.add('added');
+        heart.style.color = '#ff3860';
+      } else {
+        heart.classList.remove('added');
+        heart.style.color = 'white';
+      }
+    });
+    updateCartCount();
+  };
 </script>
 
 </body>
