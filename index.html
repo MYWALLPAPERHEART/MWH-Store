@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MYWALLPAPERHEART</title>
 <style>
-  /* Reset básico */
   * {
     box-sizing: border-box;
   }
@@ -26,7 +25,6 @@
     border-bottom: 1px solid #333;
     z-index: 100;
   }
-  /* Logo em círculo */
   #logo {
     width: 50px;
     height: 50px;
@@ -40,7 +38,6 @@
     height: 100%;
     object-fit: cover;
   }
-  /* Títulos no centro */
   #titles {
     text-align: center;
     flex-grow: 1;
@@ -55,7 +52,6 @@
     font-style: italic;
     font-size: 0.9rem;
   }
-  /* Carrinho topo direito */
   #cart {
     cursor: pointer;
     width: 36px;
@@ -63,8 +59,6 @@
     fill: #fff;
     flex-shrink: 0;
   }
-
-  /* Menu categorias */
   nav {
     background: #111;
     display: flex;
@@ -72,7 +66,7 @@
     gap: 20px;
     padding: 12px 0;
     position: sticky;
-    top: 62px; /* header 60px + 2 */
+    top: 62px;
     z-index: 90;
   }
   nav button {
@@ -90,8 +84,6 @@
     background-color: white;
     color: black;
   }
-
-  /* Produtos grid */
   main {
     max-width: 1200px;
     margin: 20px auto 40px;
@@ -103,7 +95,7 @@
     gap: 25px;
   }
   .produto {
-    background: none; /* remove cinza */
+    background: none;
     border-radius: 10px;
     text-align: center;
     position: relative;
@@ -128,18 +120,15 @@
     font-size: 0.9rem;
     color: #ddd;
   }
-  /* Estrelas avaliação */
   .stars {
     color: white;
     margin-bottom: 8px;
     font-size: 1.1rem;
   }
-  /* Preço */
   .price {
     font-weight: bold;
     margin-bottom: 8px;
   }
-  /* Botão Buy Now */
   .buy-btn {
     background: white;
     color: black;
@@ -158,7 +147,6 @@
     color: white;
     border-color: white;
   }
-  /* Botão favorito coração */
   .favorite-btn {
     position: absolute;
     top: 12px;
@@ -175,7 +163,6 @@
   .favorite-btn:hover {
     color: #ff3860;
   }
-  /* Footer */
   footer {
     text-align: center;
     padding: 20px 0;
@@ -203,11 +190,11 @@
 </header>
 
 <nav>
-  <button class="active" onclick="showCategory('all')">All Products</button>
-  <button onclick="showCategory('clothes')">Clothes</button>
-  <button onclick="showCategory('accessories')">Accessories</button>
-  <button onclick="showCategory('art')">Art & Decoration</button>
-  <button onclick="showCategory('about')">About</button>
+  <button class="active" onclick="showCategory('all', this)">All Products</button>
+  <button onclick="showCategory('clothes', this)">Clothes</button>
+  <button onclick="showCategory('accessories', this)">Accessories</button>
+  <button onclick="showCategory('art', this)">Art & Decoration</button>
+  <button onclick="showCategory('about', this)">About</button>
 </nav>
 
 <main>
@@ -246,4 +233,89 @@
       <p>Design exclusivo pintado à mão</p>
       <div class="stars">★★★★★</div>
       <div class="price">€20</div>
-      <a class="buy-btn" href="#"
+      <a class="buy-btn" href="#" target="_blank">Buy Now</a>
+    </article>
+
+    <!-- Accessories -->
+    <article class="produto accessories">
+      <div class="favorite-btn" onclick="toggleFavorite(this)">&#10084;</div>
+      <img src="Almodafa MWH.png" alt="Almofada" />
+      <h2>Almofada</h2>
+      <p>Design exclusivo pintado à mão</p>
+      <div class="stars">★★★★★</div>
+      <div class="price">€10</div>
+      <a class="buy-btn" href="#" target="_blank">Buy Now</a>
+    </article>
+
+    <!-- Art & Decoration -->
+    <article class="produto art">
+      <div class="favorite-btn" onclick="toggleFavorite(this)">&#10084;</div>
+      <img src="Puzzle MWH.png" alt="Puzzle" />
+      <h2>Puzzle</h2>
+      <p>Design exclusivo pintado à mão</p>
+      <div class="stars">★★★★★</div>
+      <div class="price">€10</div>
+      <a class="buy-btn" href="#" target="_blank">Buy Now</a>
+    </article>
+
+    <article class="produto art">
+      <div class="favorite-btn" onclick="toggleFavorite(this)">&#10084;</div>
+      <img src="Caneca MWH.png" alt="Caneca" />
+      <h2>Caneca</h2>
+      <p>Design exclusivo pintado à mão</p>
+      <div class="stars">★★★★★</div>
+      <div class="price">€10</div>
+      <a class="buy-btn" href="#" target="_blank">Buy Now</a>
+    </article>
+
+    <article class="produto art">
+      <div class="favorite-btn" onclick="toggleFavorite(this)">&#10084;</div>
+      <img src="Caderno MWH.png" alt="Caderno" />
+      <h2>Caderno</h2>
+      <p>Design exclusivo pintado à mão</p>
+      <div class="stars">★★★★★</div>
+      <div class="price">€10</div>
+      <a class="buy-btn" href="#" target="_blank">Buy Now</a>
+    </article>
+  </section>
+</main>
+
+<footer>
+  Art Exhibition & sales
+</footer>
+
+<script>
+  function showCategory(category, btn) {
+    // Remove active class dos botões
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    if(btn) btn.classList.add('active');
+    
+    // Mostrar ou esconder about
+    const about = document.getElementById('about');
+    const products = document.getElementById('products-list');
+    
+    if(category === 'about') {
+      about.style.display = 'block';
+      products.style.display = 'none';
+    } else {
+      about.style.display = 'none';
+      products.style.display = 'grid';
+      
+      // Mostrar produtos da categoria ou todos
+      document.querySelectorAll('.produto').forEach(prod => {
+        if(category === 'all') {
+          prod.style.display = 'block';
+        } else {
+          prod.style.display = prod.classList.contains(category) ? 'block' : 'none';
+        }
+      });
+    }
+  }
+
+  function toggleFavorite(el) {
+    el.classList.toggle('favorited');
+  }
+</script>
+
+</body>
+</html>
