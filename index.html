@@ -143,6 +143,7 @@
       display: flex;
       justify-content: center;
       gap: 10px;
+      align-items: center;
     }
 
     .buy-btn {
@@ -162,13 +163,14 @@
     }
 
     .favorite-btn {
-      font-size: 1.4rem;
+      font-size: 1.8rem; /* aumentei para ficar maior */
       color: #fff;
       cursor: pointer;
       user-select: none;
       transition: color 0.3s;
       display: flex;
       align-items: center;
+      line-height: 1;
     }
     .favorite-btn.added {
       color: #e74c3c;
@@ -337,7 +339,7 @@ By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an im
     </section>
   </main>
 
-  <svg id="cart-icon" onclick="toggleCartModal()" viewBox="0 0 24 24">
+  <svg id="cart-icon" onclick="toggleCartModal()" viewBox="0 0 24 24" style="fill:white; cursor:pointer;">
     <path d="M7 4h-2l-3 7v9a2 2 0 002 2h14a2 2 0 002-2v-9l-3-7h-2" fill="none" stroke="white" stroke-width="2"/>
     <circle cx="10" cy="20" r="2" fill="white"/>
     <circle cx="17" cy="20" r="2" fill="white"/>
@@ -350,9 +352,12 @@ By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an im
     <p id="cart-total"></p>
     <div class="actions">
       <button onclick="toggleCartModal()">Close</button>
-      <button onclick="checkout()">Realizar Compra</button>
+      <button id="paypal-buy-now">Buy Now</button>
     </div>
   </div>
+
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=EUR"></script>
 
   <script>
     const products = [
@@ -401,7 +406,7 @@ By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an im
           <div class="stars">★★★★★</div>
           <p class="price">€${prod.price}</p>
           <div class="actions">
-            <button class="buy-btn" onclick="alert('Buying ${prod.name} for €${prod.price}')">Buy Now</button>
+            <button class="buy-btn" onclick="buyProduct('${prod.id}')">Buy Now</button>
             <span class="favorite-btn${favorites.includes(prod.id) ? ' added' : ''}" 
                   onclick="toggleFavorite('${prod.id}', this)" title="Add/remove favorite">♥</span>
           </div>
@@ -448,6 +453,7 @@ By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an im
       if(favorites.length === 0){
         list.innerHTML = '<li>Your cart is empty.</li>';
         document.getElementById('cart-total').textContent = '';
+        document.getElementById('paypal-buy-now').style.display = 'none';
         return;
       }
 
@@ -474,19 +480,46 @@ By choosing a piece signed by MYWALLPAPERHEART, you don’t just take home an im
         list.appendChild(li);
       });
 
-      document.getElementById('cart-total').textContent = `Total: €${total}`;
+      document.getElementById('cart-total').textContent = `Total: €${total.toFixed(2)}`;
+      document.getElementById('paypal-buy-now').style.display = 'inline-block';
     }
 
     function checkout() {
-      if(favorites.length === 0){
+      alert('Checkout function not implemented yet.');
+    }
+
+    // Comprar produto individual clicando no Buy Now do produto
+    function buyProduct(prodId){
+      const product = products.find(p => p.id === prodId);
+      if(!product) return;
+      // Abrir o modal do carrinho com só esse produto?
+      favorites = [prodId]; 
+      updateCartCount();
+      renderCartItems();
+      toggleCartModal();
+    }
+
+    // --- PayPal Integration ---
+    // Quando o usuário clicar em Buy Now no modal, abrir o PayPal checkout para o total do carrinho
+
+    document.getElementById('paypal-buy-now').addEventListener('click', () => {
+      const total = favorites.reduce((sum, id) => {
+        const p = products.find(prod => prod.id === id);
+        return sum + (p ? p.price : 0);
+      }, 0);
+      if(total <= 0) {
         alert('Your cart is empty.');
         return;
       }
-      alert(`Thank you for your purchase! Total: €${favorites.reduce((sum,id) => sum + (products.find(p=>p.id === id)?.price||0),0)}`);
-      favorites = [];
-      updateCartCount();
-      toggleCartModal();
-    }
+      // Criar o pedido PayPal (simplificado)
+      // Como não temos backend, vamos abrir a página do PayPal com o valor
+      // Nota: Para produção é recomendado integrar via backend.
+
+      // Redirecionar para checkout do PayPal (modo simples)
+      // Você deve substituir YOUR_PAYPAL_CLIENT_ID no script e configurar o PayPal corretamente para funcionar 100%
+
+      window.open(`https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=YOUR_PAYPAL_EMAIL&item_name=MYWALLPAPERHEART+Purchase&amount=${total.toFixed(2)}&currency_code=EUR`, '_blank');
+    });
 
     // Inicializa página com todos produtos visíveis
     window.onload = () => {
