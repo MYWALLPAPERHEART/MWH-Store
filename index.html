@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MWH-Store - Loja de Arte</title>
+  <title>MWH-Store - Art Shop</title>
   <style>
     body {
       background-color: #000;
@@ -25,6 +25,26 @@
       max-width: 1100px;
       margin: 2rem auto;
       padding: 0 1rem;
+    }
+    .categories {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .categories button {
+      background: #222;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      padding: 0.7rem 1.5rem;
+      margin: 0 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .categories button:hover,
+    .categories button.active {
+      background: #0f0;
+      color: #000;
     }
     .produtos {
       display: grid;
@@ -74,82 +94,99 @@
 
   <header>
     <h1>MWH-Store</h1>
-    <p>Exposição & Venda de Arte</p>
+    <p>Art Exhibition & Sale</p>
   </header>
 
   <main>
-    <div class="produtos">
-      
-      <!-- Hoodie -->
-      <div class="produto">
-        <img src="Hoodie MWH.png" alt="Hoodie artístico" />
+    <div class="categories">
+      <button class="active" onclick="showCategory('clothes')">Clothes</button>
+      <button onclick="showCategory('accessories')">Accessories</button>
+      <button onclick="showCategory('artdecor')">Art & Decor</button>
+    </div>
+
+    <div id="produtos" class="produtos">
+      <!-- Clothes -->
+      <div class="produto clothes">
+        <img src="Hoodie MWH.png" alt="Hoodie" />
         <h2>Hoodie</h2>
         <p class="price">35€</p>
         <div class="paypal-button">
           <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
             <input type="hidden" name="cmd" value="_s-xclick" />
             <input type="hidden" name="hosted_button_id" value="EXEMPLOID-HOODIE" />
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
+            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pay with PayPal" />
             <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
           </form>
         </div>
       </div>
 
-      <!-- Tshirt -->
-      <div class="produto">
-        <img src="Tshirt MWH.png" alt="Tshirt artística" />
+      <div class="produto clothes">
+        <img src="Tshirt MWH.png" alt="Tshirt" />
         <h2>Tshirt</h2>
         <p class="price">20€</p>
         <div class="paypal-button">
           <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
             <input type="hidden" name="cmd" value="_s-xclick" />
             <input type="hidden" name="hosted_button_id" value="EXEMPLOID-TSHIRT" />
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
+            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pay with PayPal" />
             <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
           </form>
         </div>
       </div>
 
-      <!-- Caderno -->
-      <div class="produto">
-        <img src="Caderno MWH.png" alt="Caderno artístico" />
-        <h2>Caderno</h2>
+      <!-- Accessories -->
+      <div class="produto accessories">
+        <img src="Almodafa MWH.png" alt="Almofada" />
+        <h2>Cushion</h2>
         <p class="price">10€</p>
         <div class="paypal-button">
           <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
             <input type="hidden" name="cmd" value="_s-xclick" />
-            <input type="hidden" name="hosted_button_id" value="EXEMPLOID-CADERNO" />
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
+            <input type="hidden" name="hosted_button_id" value="EXEMPLOID-CUSHION" />
+            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pay with PayPal" />
             <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
           </form>
         </div>
       </div>
 
-      <!-- Puzzle -->
-      <div class="produto">
-        <img src="Puzzle MWH.png" alt="Puzzle artístico" />
+      <!-- Art & Decor -->
+      <div class="produto artdecor">
+        <img src="Caderno MWH.png" alt="Notebook" />
+        <h2>Notebook</h2>
+        <p class="price">10€</p>
+        <div class="paypal-button">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="EXEMPLOID-NOTEBOOK" />
+            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pay with PayPal" />
+            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
+          </form>
+        </div>
+      </div>
+
+      <div class="produto artdecor">
+        <img src="Caneca MWH.png" alt="Mug" />
+        <h2>Mug</h2>
+        <p class="price">10€</p>
+        <div class="paypal-button">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="EXEMPLOID-MUG" />
+            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pay with PayPal" />
+            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
+          </form>
+        </div>
+      </div>
+
+      <div class="produto artdecor">
+        <img src="Puzzle MWH.png" alt="Puzzle" />
         <h2>Puzzle</h2>
         <p class="price">10€</p>
         <div class="paypal-button">
           <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
             <input type="hidden" name="cmd" value="_s-xclick" />
             <input type="hidden" name="hosted_button_id" value="EXEMPLOID-PUZZLE" />
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
-            <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
-          </form>
-        </div>
-      </div>
-
-      <!-- Almofada -->
-      <div class="produto">
-        <img src="Almodafa MWH.png" alt="Almofada artística" />
-        <h2>Almofada</h2>
-        <p class="price">10€</p>
-        <div class="paypal-button">
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick" />
-            <input type="hidden" name="hosted_button_id" value="EXEMPLOID-ALMOFADA" />
-            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pague com PayPal" />
+            <input type="image" src="https://www.paypalobjects.com/pt_PT/PT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Pay with PayPal" />
             <img alt="" border="0" src="https://www.paypal.com/pt_PT/i/scr/pixel.gif" width="1" height="1" />
           </form>
         </div>
@@ -159,8 +196,28 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 MWH-Store. Todos os direitos reservados.</p>
+    &copy; 2025 MWH-Store
   </footer>
+
+<script>
+  function showCategory(category) {
+    const buttons = document.querySelectorAll('.categories button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const produtos = document.querySelectorAll('.produto');
+    produtos.forEach(prod => {
+      if (category === 'all' || prod.classList.contains(category)) {
+        prod.style.display = 'block';
+      } else {
+        prod.style.display = 'none';
+      }
+    });
+  }
+
+  // Show Clothes by default
+  showCategory('clothes');
+</script>
 
 </body>
 </html>
